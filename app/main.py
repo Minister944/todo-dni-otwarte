@@ -25,9 +25,9 @@ def add_todo(data: CreateTodo):
 @app.put("/todo", tags=["todo"])
 def todo_update(data: UpdateTodo):
     with cursor() as cur:
-        id = update_todo(cur, data.dict())
+        update_todo(cur, data.dict())
 
-    return {"id": id}
+    return {"status": "ok"}
 
 
 @app.delete("/todo", tags=["todo"])
