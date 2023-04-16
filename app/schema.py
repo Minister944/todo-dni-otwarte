@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -7,7 +8,8 @@ class CreateTodo(BaseModel):
 
 class UpdateTodo(BaseModel):
     id: int
-    description: str
+    description: Optional[str]
+    completed: Optional[bool]
 
 
 class DeleteTodo(BaseModel):

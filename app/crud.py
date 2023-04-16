@@ -1,12 +1,12 @@
 from fastapi import HTTPException
 
 
-def todo_to_dict(id, description):
-    return {"id": id, "description": description}
+def todo_to_dict(id, description, completed):
+    return {"id": id, "description": description, "completed": bool(completed)}
 
 
 def get_todos(db):
-    query = "SELECT id, description FROM todo ORDER BY id"
+    query = "SELECT id, description, completed FROM todo ORDER BY id"
     todos = []
 
     for todo in db.execute(query):
@@ -23,7 +23,14 @@ def create_todo(db, data):
 
 
 def update_todo(db, data):
-    query = "UPDATE todo SET description=:description WHERE id=:id"
+    print(data)
+    if data["description"] == None and data["completed"] == None:
+        raise HTTPException(
+            status_code=400,
+            detail="At least one of 'description' or 'completed' must be provided",
+        )
+
+    query = "UPDATE todo SET description=COALESCE(:description, description), completed=COALESCE(:completed, completed) WHERE id=:id"
     data = db.execute(query, data)
 
     if data.rowcount == 0:
@@ -32,7 +39,6 @@ def update_todo(db, data):
 
 def delete_todo(db, data):
     query = "DELETE FROM todo WHERE id = :id"
-
     data = db.execute(query, data)
 
     if data.rowcount == 0:

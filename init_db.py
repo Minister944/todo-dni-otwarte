@@ -5,7 +5,8 @@ with cursor() as cur:
         """
         CREATE TABLE todo (
             id integer PRIMARY KEY,
-            description text DEFAULT ''
+            description text DEFAULT '',
+            completed boolen DEFAULT false
         )
         """
     )
