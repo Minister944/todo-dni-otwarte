@@ -23,7 +23,6 @@ def create_todo(db, data):
 
 
 def update_todo(db, data):
-    print(data)
     if data["description"] == None and data["completed"] == None:
         raise HTTPException(
             status_code=400,
