@@ -10,6 +10,12 @@ python3 init_db.py # Tworzymy baze danych
 uvicorn app.main:app --reload
 ```
 
+Następnie, mając uruchomiony serwer, instalujemy zalenżności oraz uruchamiamy nasz frontend
+
+```bash
+yarn && yarn vite build && yarn vite preview --port 3000
+```
+
 ## Przydatne linki ❤️
 
 - [FastAPI](https://www.youtube.com/watch?v=7t2alSnE2-I)

@@ -1,10 +1,19 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.crud import get_todos, create_todo, delete_todo, update_todo, get_todo_by_id
 from app.database import cursor
 from app.schema import CreateTodo, UpdateTodo
 
-app = FastAPI()
 
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/todos", tags=["todo"])
 def get_all_todos():
