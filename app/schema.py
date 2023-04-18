@@ -7,10 +7,5 @@ class CreateTodo(BaseModel):
 
 
 class UpdateTodo(BaseModel):
-    id: int
     description: Optional[str]
     completed: Optional[bool]
-
-
-class DeleteTodo(BaseModel):
-    id: int
