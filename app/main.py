@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.crud import get_todos, create_todo, delete_todo, update_todo, get_todo_by_id
 from app.database import cursor
-from app.schema import CreateTodo, UpdateTodo, DeleteTodo
+from app.schema import CreateTodo, UpdateTodo
 
 app = FastAPI()
 
